@@ -39,10 +39,10 @@ void setup()
 void loop()
 {
   radio.stopListening();
-  
-  if(Serial.available())
-    str = Serial.readStringUntil('\n');
-  
+
+  while( !Serial.available() );
+
+  str = Serial.readStringUntil('\n');  
   command = (uint16_t) str.toInt();
   if(command > bot_left)
     command=0;
