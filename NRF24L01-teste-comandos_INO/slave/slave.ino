@@ -26,7 +26,7 @@ void setup(void)
   pinMode(6, OUTPUT);
   pinMode(7, OUTPUT);
 
-  digitalWrite(2, LOW);
+  digitalWrite(2, HIGH);
   digitalWrite(3, LOW);
   digitalWrite(4, LOW);
   digitalWrite(5, LOW);
