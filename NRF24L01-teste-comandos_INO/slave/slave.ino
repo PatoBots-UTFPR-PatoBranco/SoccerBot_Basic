@@ -12,10 +12,10 @@ const uint64_t pipes[2] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL };
 #define bot_stop          0
 #define bot_foward        1
 #define bot_backward      2
-#define bot_clockwise     4
-#define bot_anticlockwise 5
-#define bot_right         6
-#define bot_left          7
+#define bot_clockwise     3
+#define bot_anticlockwise 4
+#define bot_right         5
+#define bot_left          6
 
 void setup(void)
 {
@@ -25,6 +25,13 @@ void setup(void)
   pinMode(5, OUTPUT);
   pinMode(6, OUTPUT);
   pinMode(7, OUTPUT);
+
+  digitalWrite(2, LOW);
+  digitalWrite(3, LOW);
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+  digitalWrite(6, LOW);
+  digitalWrite(7, LOW);
   
   radio.begin();
   radio.setRetries(15,15);
