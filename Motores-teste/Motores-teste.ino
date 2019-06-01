@@ -11,63 +11,60 @@
 
  uint8_t i = 120;
 
-void forwardA(uint8_t value){
+void forwardA_bot(uint8_t value){
 //Gira o Motor A no sentido horario
  digitalWrite(motor_left_IN2, LOW);
  analogWrite(motor_left_IN1, value);
 }
 
-void forwardB(uint8_t value){
+void forwardB_bot(uint8_t value){
 //Gira o Motor B no sentido horario
  digitalWrite(motor_right_IN2, LOW);
  analogWrite(motor_right_IN1, value);
 }
 
-void backwardA(uint8_t value){
+void backwardA_bot(uint8_t value){
   //Gira o Motor A no sentido antihorario
   digitalWrite(motor_left_IN2,LOW);
   analogWrite(motor_left_IN1, value);
 }
 
-void backwardB(uint8_t value){
+void backwardB_bot(uint8_t value){
  //Gira o Motor B no sentido anti-horario
  digitalWrite(motor_right_IN1, LOW);
  analogWrite(motor_right_IN2, value);
 }
  
-void forward(uint8_t value){  
- forwardA(value);
- forwardB(value);
+void forward_bot(uint8_t value){  
+ forwardA_bot(value);
+ forwardB_bot(value);
 }
 
-void backward(uint8_t value){
-  backwardA(value);
-  backwardB(value);
+void backward_bot(uint8_t value){
+  backwardA_bot(value);
+  backwardB_bot(value);
 }
-void left(uint8_t value){
+void left_bot(uint8_t value){
  digitalWrite(motor_back_IN1, LOW);
  analogWrite(motor_back_IN2, value);
 }
 
-void right(uint8_t value){
+void right_bot(uint8_t value){
  digitalWrite(motor_back_IN2, LOW);
  analogWrite(motor_back_IN1, value);
  
 }
 
-void rotate_left(uint8_t value){
+void rotate_left_bot(uint8_t value){
  //Gira motor A anti-horario e B horario
- backwardA(value);
- forwardB(value);
+ backwardA_bot(value);
+ forwardB_bot(value);
 }
 
-void rotate_right(uint8_t value){
-  //Gira motor B anti-horario e A horario
- digitalWrite(motor_right_IN1, LOW);
- digitalWrite(motor_left_IN2, LOW);
- analogWrite(motor_right_IN2, value);
- analogWrite(motor_left_IN1, value);
- 
+void rotate_right_bot(uint8_t value){
+ //Gira motor B anti-horario e A horario
+ backwardB_bot(value);
+ forwardA_bot(value); 
 }
 void stop_bot(){
  //Freia Motores A, B e C
@@ -91,34 +88,34 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:  
-  forward(i);
+  forward_bot(i);
   delay(1000);
   stop_bot();
   delay(100);
-  rotate_right(i);
+  rotate_right_bot(i);
   delay(1000);
   stop_bot();
   delay(100);
-  rotate_left(i);
+  rotate_left_bot(i);
   delay(1000);
   stop_bot();
   delay(100);
-  left(i);
+  left_bot(i);
   delay(1000);
   stop_bot();
   delay(100);
-  right(i);
+  right_bot(i);
   delay(1000);
   stop_bot();
   delay(100);
-  forwardA(i);
+  forwardA_bot(i);
   delay(1000);
   stop_bot();
-  forwardB(i); 
+  forwardB_bot(i); 
   delay(1000);
   stop_bot();
   delay(100);
-  backward(i);
+  backward_bot(i);
   delay(1000);
   stop_bot();
   delay(100);
