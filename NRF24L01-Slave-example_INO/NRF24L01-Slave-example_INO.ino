@@ -19,6 +19,7 @@ role_e role = role_pong_back;
 void setup(void)
 {
   Serial.begin(57600);
+  
   radio.begin();
   radio.setRetries(15,15);
   radio.openReadingPipe(1,pipes[1]);

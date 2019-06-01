@@ -9,8 +9,8 @@
 
 
 /****************** NRF Config ***************************/
-RF24 radio(7,8);
-const uint64_t pipes[2] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL };
+RF24 radio(7, 8); // CE, CSN
+const byte address[6] = "00001";
 
 #define bot_stop          0
 #define bot_foward        1
@@ -99,15 +99,6 @@ void setup(void)
 {
   // radio init
   Serial.begin(115200);
-  
-  radio.begin();
-  radio.setRetries(15,15);
-  radio.openReadingPipe(1,pipes[1]);
-  radio.startListening();
-  radio.printDetails();
-  radio.openWritingPipe(pipes[1]);
-  radio.openReadingPipe(1,pipes[0]);
-  radio.startListening();
 
   // motor init
   pinMode(motor_left_IN1, OUTPUT);
@@ -116,6 +107,12 @@ void setup(void)
   pinMode(motor_right_IN2, OUTPUT);
   pinMode(motor_back_IN1, OUTPUT);
   pinMode(motor_back_IN2, OUTPUT);
+
+  // radio init
+  radio.begin();
+  radio.openReadingPipe(0, address);
+  radio.setPALevel(RF24_PA_MIN);
+  radio.startListening();
 }
 
 void loop(void)

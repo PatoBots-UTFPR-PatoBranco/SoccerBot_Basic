@@ -30,10 +30,10 @@ void loop(void)
 {
   radio.stopListening();
 
-  if(Serial.available())
-    str = Serial.readStringUntil('\n');
+  //if(Serial.available())
+    //str = Serial.readStringUntil('\n');
   
-  command = (unsigned long) str.toInt();
+  //command = (unsigned long) str.toInt();
   //command = 10;
   radio.write( &command, sizeof(unsigned long) );
 

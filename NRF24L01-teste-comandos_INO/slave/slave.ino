@@ -1,13 +1,19 @@
 /*  NRF24L01 teste comandos - slave
  *  Joao Tavares
  *  2019 May 31th
+ *  Arduino Mega E NRF24L01
+ *  CE    -> 7
+ *  CSN   -> 8
+ *  SCK   -> 52
+ *  MOSI  -> 51
+ *  MISO  -> 50
  */
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
 
-RF24 radio(9,10);
-const uint64_t pipes[2] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL };
+RF24 radio(7, 8); // CE, CSN
+const byte address[6] = "00001";
 
 #define bot_stop          0
 #define bot_foward        1
@@ -33,13 +39,12 @@ void setup(void)
   digitalWrite(6, LOW);
   digitalWrite(7, LOW);
   
+  Serial.begin(57600);
+
+  // radio init
   radio.begin();
-  radio.setRetries(15,15);
-  radio.openReadingPipe(1,pipes[1]);
-  radio.startListening();
-  radio.printDetails();
-  radio.openWritingPipe(pipes[1]);
-  radio.openReadingPipe(1,pipes[0]);
+  radio.openReadingPipe(0, address);
+  radio.setPALevel(RF24_PA_MIN);
   radio.startListening();
 }
 
@@ -49,6 +54,7 @@ void loop(void)
   {
     uint16_t data = 0;
     radio.read( &data, sizeof(uint16_t) );
+    Serial.println(data);
 
     if(data == bot_stop)
     {
