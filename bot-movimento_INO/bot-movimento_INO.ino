@@ -22,10 +22,10 @@ const byte address[6] = "00001";
 /**********************************************************/
 
 /****************** Motor Config ***************************/
-#define motor_left_IN1 4
+#define motor_left_IN1 4 
 #define motor_left_IN2 5
 #define motor_right_IN1 6
-#define motor_right_IN2 9
+#define motor_right_IN2 10
 #define motor_back_IN1 2
 #define motor_back_IN2 3
 
@@ -98,7 +98,7 @@ void stop_bot(){
 void setup(void)
 {
   // radio init
-  Serial.begin(115200);
+  Serial.begin(57600);
 
   // motor init
   pinMode(motor_left_IN1, OUTPUT);
@@ -140,6 +140,6 @@ void loop(void)
       left_bot(125);
     else stop_bot();
 
-    delay(10);
+    delay(1000);
   }
 }
